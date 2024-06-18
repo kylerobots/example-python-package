@@ -1,0 +1,14 @@
+[tool.poetry]
+  authors     = ["Kyle M. Hart <kylemhart@gmail.com>"]
+  description = "A template for a modern Python package."
+  license     = "MIT"
+  name        = "example-python-package"
+  readme      = "README.md"
+  version     = "0.1.0"
+
+[tool.poetry.dependencies]
+  python = "^3.9"
+
+[build-system]
+  build-backend = "poetry.core.masonry.api"
+  requires      = ["poetry-core"]
