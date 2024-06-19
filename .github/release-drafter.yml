@@ -1,0 +1,34 @@
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+categories:
+  - title: 'Breaking Changes'
+    label: 'breaking'
+  - title: 'Features'
+    label: 'feature'
+  - title: 'Bug Fixes'
+    label: 'bug'
+  - title: 'Maintenance'
+    labels:
+      - 'build'
+      - 'documentation'
+      - 'refactor'
+      - 'test'
+version-resolver:
+  major:
+    labels:
+      - 'breaking'
+  minor:
+    labels:
+      - 'feature'
+  patch:
+    labels:
+      - 'bug'
+      - 'build'
+      - 'documentation'
+      - 'refactor'
+      - 'test'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+template: |
+  ## Changes
+
+  $CHANGES
