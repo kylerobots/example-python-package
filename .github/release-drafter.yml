@@ -29,6 +29,6 @@ version-resolver:
       - 'test'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 template: |
-  ## Changes
+  # Changes
 
   $CHANGES
