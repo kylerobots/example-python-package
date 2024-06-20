@@ -28,6 +28,10 @@ This package includes a Git pre-commit hook that ensures all commit messages fol
 run `pre-commit install --hook-type commit-msg`. **Note:** this check is not enforced for all developers. Each
 contributor would need to run this locally to ensure it applies.
 
+Additionally, there is an Action in the `.github/workflows/conventional-commit.yml` file that checks all Git commits in
+a Pull Request and errors if they do not all follow the convention. This would ensure any developers contributing to the
+project adhere to this standard.
+
 ### Poetry ###
 
 This package uses [Poetry](https://python-poetry.org/) to do all the package management, including dependencies and
