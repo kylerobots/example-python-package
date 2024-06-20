@@ -1,0 +1,9 @@
+name: Conventional Commit Enforcement
+on: pull_request
+jobs:
+  check:
+    name: Check Commit History
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conventional Commit Lint
+        uses: opensource-nepal/commitlint@v1.0.0
