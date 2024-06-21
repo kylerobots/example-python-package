@@ -9,6 +9,8 @@ with a number of features.
 ## Table of Contents ##
 
 1. [Included Features](#included-features)
+    - [Conventional Commit Checks](#conventional-commit-checks)
+    - [Package Publishing](#package-publishing)
     - [Poetry](#poetry)
     - [Pyenv Python Versions](#pyenv-python-versions)
     - [Release Drafts](#release-drafts)
@@ -31,6 +33,12 @@ contributor would need to run this locally to ensure it applies.
 Additionally, there is an Action in the `.github/workflows/conventional-commit.yml` file that checks all Git commits in
 a Pull Request and errors if they do not all follow the convention. This would ensure any developers contributing to the
 project adhere to this standard.
+
+### Package Publishing ###
+
+There is a workflow file called `python-publish.yml` that will automatically build and push to
+[TestPyPi](https://test.pypi.org/) when a new Release is released. It uses Poetry for the build and push. It publishes
+to TestPyPi because this isn't a real package that does anything useful, so it is published somewhere "out of the way."
 
 ### Poetry ###
 
