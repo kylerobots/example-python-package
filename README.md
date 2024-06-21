@@ -8,13 +8,22 @@ with a number of features.
 
 ## Table of Contents ##
 
-1. [Included Features](#included-features)
+1. [The Package Itself](#the-package-itself)
+2. [Included Features](#included-features)
     - [Conventional Commit Checks](#conventional-commit-checks)
     - [Package Publishing](#package-publishing)
     - [Poetry](#poetry)
     - [Pyenv Python Versions](#pyenv-python-versions)
     - [Release Drafts](#release-drafts)
-2. [Acknowledgements](#acknowledgements)
+3. [Acknowledgements](#acknowledgements)
+
+## The Package Itself ##
+
+This package provides a single module, `simple_math`, with 4 functions: `add`, `subtract`, `multiply`, and `divide`.
+They each perform their equivalent math operation.
+
+There is also a script in `example` that takes two numbers from the command line, calls all 4 functions in turn, and
+prints the results to the console. This is included to demonstrate the use of the library.
 
 ## Included Features ##
 
