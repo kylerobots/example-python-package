@@ -5,8 +5,8 @@ on:
     branches:
       - main
 jobs:
-  # Run unit tests on a variety of different OS and Python versions.
-  unit-tests:
+  # Run unit and end-to-end tests on a variety of different OS and Python versions.
+  tests:
     name: Run Unit Tests
     runs-on: ${{ matrix.os }}
     strategy:
@@ -14,7 +14,6 @@ jobs:
       matrix:
         os: [ubuntu-24.04, windows-2022]
         python_version: ['3.9', '3.10', '3.11', '3.12']
-    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.7
@@ -36,10 +35,13 @@ jobs:
         with:
           name: Test Results (Python ${{ matrix.python_version }} - ${{ matrix.os }})
           path: unit-results.xml
+      # Also do an end-to-end test of the included example script.
+      - name: Run End-to-End Test
+        run: poetry run example-python-package 1 2
   # Publish all the results across every OS and Python version.
   publish-reports:
     name: Publish Test Reports
-    needs: unit-tests
+    needs: tests
     runs-on: ubuntu-latest
     permissions:
       checks: write
