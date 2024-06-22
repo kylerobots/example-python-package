@@ -73,7 +73,8 @@ tag type (e.g. `build`, `documentation`, etc.) and can automatically determine t
 There are several unit tests that check the package. They use [pytest](https://docs.pytest.org/en/8.2.x/index.html).
 Additionally, there is a workflow that runs on each Pull Request that runs unit tests over multiple versions of
 operating systems and Python versions, then outputs the results as a comment on the PR. The Action that does the
-summarization also includes instructions on how to output a badge on the README, but that is not included here.
+summarization also includes instructions on how to output a badge on the README, but that is not included here. This
+workflow also runs the example script as a form of end-to-end testing.
 
 There is also a file called `noxfile.py` that demonstrates one way to use
 [Nox](https://nox.thea.codes/en/stable/index.html) to test multiple versions of Python and multiple dependency versions.
