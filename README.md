@@ -15,6 +15,7 @@ with a number of features.
     - [Poetry](#poetry)
     - [Pyenv Python Versions](#pyenv-python-versions)
     - [Release Drafts](#release-drafts)
+    - [Unit Testing](#unit-testing)
 3. [Acknowledgements](#acknowledgements)
 
 ## The Package Itself ##
@@ -66,6 +67,18 @@ versions. This will allow you to have multiple different Python versions at once
 There is a GitHub workflow that automatically drafts release notes based on pull requests. It uses an Action called
 [release-drafter](https://github.com/release-drafter/release-drafter). This action is configured to group info based on
 tag type (e.g. `build`, `documentation`, etc.) and can automatically determine the next version use the same tags.
+
+### Unit Testing ###
+
+There are several unit tests that check the package. They use [pytest](https://docs.pytest.org/en/8.2.x/index.html).
+Additionally, there is a workflow that runs on each Pull Request that runs unit tests over multiple versions of
+operating systems and Python versions, then outputs the results as a comment on the PR. The Action that does the
+summarization also includes instructions on how to output a badge on the README, but that is not included here.
+
+There is also a file called `noxfile.py` that demonstrates one way to use
+[Nox](https://nox.thea.codes/en/stable/index.html) to test multiple versions of Python and multiple dependency versions.
+The goal here is not to provide a consistent CI unit test, but rather to help determine minimum supported versions of a
+dependency to specify in the `pyproject.toml` file.
 
 ## Acknowledgements ##
 
