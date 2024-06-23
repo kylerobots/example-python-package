@@ -50,6 +50,17 @@ Additionally, there is an Action in the `.github/workflows/conventional-commit.y
 a Pull Request and errors if they do not all follow the convention. This would ensure any developers contributing to the
 project adhere to this standard.
 
+### Linting ###
+
+This package uses [Ruff](https://docs.astral.sh/ruff/) for linting. Additionally, there are settings for the
+[VS Code extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) and a job on the Pull
+Request workflow that verifies that all checks pass.
+
+The project enables a number of rules, as defined in the `pyproject.toml` file. There are plenty more available, as
+documented on Ruff's site. This is just a collection that are plausibly relevant to the purpose of the package here.
+
+Ruff also provides formatting, so it is configured to format the code on save.
+
 ### Package Publishing ###
 
 There is a workflow file called `python-publish.yml` that will automatically build and push to
