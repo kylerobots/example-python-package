@@ -35,6 +35,10 @@ jobs:
   run-with-reports:
     name: Run Tests and Report
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      checks: write
+      pull-requests: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.7
