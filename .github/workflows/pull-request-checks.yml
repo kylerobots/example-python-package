@@ -59,3 +59,12 @@ jobs:
           junitxml-path: ./results.xml
           junitxml-title: "Test Summary"
           pytest-xml-coverage-path: ./coverage.xml
+  # Perform a linting check.
+  linting:
+    name: Linting Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.7
+      - name: Run Ruff
+        uses: chartboost/ruff-action@v1
