@@ -38,7 +38,32 @@
   target-version = "py39"
 
 [tool.ruff.lint]
-  extend-select = ["ALL"]
+  select = [
+    "A",
+    "ANN",
+    "B",
+    "BLE",
+    "C90",
+    "COM",
+    "D",
+    "E",
+    "EM",
+    "ERA",
+    "F",
+    "FBT",
+    "I",
+    "INP",
+    "N",
+    "NPY",
+    "PL",
+    "PT",
+    "Q",
+    "RSE",
+    "RUF",
+    "SIM",
+    "UP",
+    "W",
+  ]
 
 [tool.ruff.lint.pydocstyle]
   convention = "pep257"
