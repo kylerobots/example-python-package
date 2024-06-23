@@ -6,8 +6,8 @@ on:
       - main
 jobs:
   # Run unit and end-to-end tests on a variety of different OS and Python versions.
-  tests:
-    name: Run Unit Tests
+  multi-version-tests:
+    name: Run Tests on Multiple Versions
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -27,34 +27,32 @@ jobs:
           pip install poetry
           poetry install --with=dev
       - name: Run Unit Tests
-        run: poetry run pytest --junitxml=unit-results.xml
-      # Upload each version so that the publisher can collect everything
-      - name: Upload Results
-        if: always()
-        uses: actions/upload-artifact@v4.3.3
-        with:
-          name: Test Results (Python ${{ matrix.python_version }} - ${{ matrix.os }})
-          path: unit-results.xml
-      # Also do an end-to-end test of the included example script.
+        run: poetry run pytest
       - name: Run End-to-End Test
         run: poetry run example-python-package 1 2
-  # Publish all the results across every OS and Python version.
-  publish-reports:
-    name: Publish Test Reports
-    needs: tests
+  # Run on a single version to extract test and coverage reports.
+  # This is a bit duplicative, since it runs above as well.
+  run-with-reports:
+    name: Run Tests and Report
     runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      contents: read
-      issues: read
-      pull-requests: write
-    if: always()
     steps:
-      - name: Download Reports
-        uses: actions/download-artifact@v4.1.7
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.7
+      - name: Setup Python
+        # This will automatically grab the Python version from
+        # .python-version
+        uses: actions/setup-python@v5.1.0
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --with=dev
+      - name: Run Tests
+        run: poetry run pytest --cov --cov-report term --cov-report xml:coverage.xml --junit-xml=results.xml
+      - name: Output Results
+        uses: MishaKav/pytest-coverage-comment@v1.1.51
         with:
-          path: artifacts
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2.16.1
-        with:
-          files: "artifacts/**/*.xml"
+          junitxml-path: ./results.xml
+          junitxml-title: "Test Summary"
+          pytest-xml-coverage-path: ./coverage.xml
+
