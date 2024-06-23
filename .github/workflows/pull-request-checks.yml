@@ -39,8 +39,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.1.7
       - name: Setup Python
-        # This will automatically grab the Python version from
-        # .python-version
+        with:
+          python-version: '3.12'
         uses: actions/setup-python@v5.1.0
       - name: Install Dependencies
         run: |
@@ -55,4 +55,3 @@ jobs:
           junitxml-path: ./results.xml
           junitxml-title: "Test Summary"
           pytest-xml-coverage-path: ./coverage.xml
-
