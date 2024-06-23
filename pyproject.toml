@@ -20,7 +20,7 @@
 [tool.poetry.dependencies]
   argparse = "^1.4.0"
   numpy    = "^1.26.4"
-  python   = "^3.9"
+  python   = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
   nox        = "^2024.4.15"
@@ -35,7 +35,7 @@
 [tool.ruff]
   line-length    = 79
   src            = ["src", "tests"]
-  target-version = "py39"
+  target-version = "py310"
 
 [tool.ruff.lint]
   select = [
