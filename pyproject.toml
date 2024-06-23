@@ -1,3 +1,14 @@
+[build-system]
+  build-backend = "poetry.core.masonry.api"
+  requires      = ["poetry-core"]
+
+[tool.coverage.run]
+  branch = true
+
+[tool.coverage.report]
+  show_missing = true
+  skip_empty   = true
+
 [tool.poetry]
   authors     = ["Kyle M. Hart <kylemhart@gmail.com>"]
   description = "A template for a modern Python package."
@@ -15,10 +26,7 @@
   nox        = "^2024.4.15"
   pre-commit = "^3.7.1"
   pytest     = "^8.2.2"
-
-[build-system]
-  build-backend = "poetry.core.masonry.api"
-  requires      = ["poetry-core"]
+  pytest-cov = "^5.0.0"
 
 [tool.poetry.scripts]
   example-python-package = "example_python_package.example:main"
