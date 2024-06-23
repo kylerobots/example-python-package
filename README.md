@@ -10,6 +10,7 @@ with a number of features.
 
 1. [The Package Itself](#the-package-itself)
 2. [Included Features](#included-features)
+    - [Code Coverage](#code-coverage)
     - [Conventional Commit Checks](#conventional-commit-checks)
     - [Package Publishing](#package-publishing)
     - [Poetry](#poetry)
@@ -31,6 +32,11 @@ prints the results to the console. This is included to demonstrate the use of th
 These are the included features. This README is not an exhaustive list of all features. It merely points out which are
 in use with some light explanation and often a link to the relevant documentation. Please refer to that documentation
 for implementation details.
+
+### Code Coverage ###
+
+There is a VS Code task to run and report the code coverage of the unit tests. There is also a GitHub workflow that
+does the same and comments the results on the Pull Request.
 
 ### Conventional Commit Checks ###
 
@@ -72,13 +78,11 @@ tag type (e.g. `build`, `documentation`, etc.) and can automatically determine t
 
 There are several unit tests that check the package. They use [pytest](https://docs.pytest.org/en/8.2.x/index.html).
 Additionally, there is a workflow that runs on each Pull Request that runs unit tests over multiple versions of
-operating systems and Python versions, then outputs the results as a comment on the PR. The Action that does the
-summarization also includes instructions on how to output a badge on the README, but that is not included here. This
-workflow also runs the example script as a form of end-to-end testing.
+operating systems and Python versions. This workflow also runs the example script as a form of end-to-end testing.
 
 There is also a file called `noxfile.py` that demonstrates one way to use
 [Nox](https://nox.thea.codes/en/stable/index.html) to test multiple versions of Python and multiple dependency versions.
-The goal here is not to provide a consistent CI unit test, but rather to help determine minimum supported versions of a
+The goal here is not to provide a repeatable CI unit test, but rather to help determine minimum supported versions of a
 dependency to specify in the `pyproject.toml` file.
 
 ## Acknowledgements ##
