@@ -12,6 +12,7 @@ with a number of features.
 2. [Included Features](#included-features)
     - [Code Coverage](#code-coverage)
     - [Conventional Commit Checks](#conventional-commit-checks)
+    - [Linting](#linting)
     - [Package Publishing](#package-publishing)
     - [Poetry](#poetry)
     - [Pyenv Python Versions](#pyenv-python-versions)
