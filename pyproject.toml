@@ -28,11 +28,13 @@
   pytest     = "^8.2.2"
   pytest-cov = "^5.0.0"
   ruff       = "^0.4.10"
+  sphinx     = "^7.3.7"
 
 [tool.poetry.scripts]
   example-python-package = "example_python_package.example:main"
 
 [tool.ruff]
+  exclude        = ["docs"]
   line-length    = 79
   src            = ["src", "tests"]
   target-version = "py310"
@@ -66,4 +68,4 @@
   ]
 
 [tool.ruff.lint.pydocstyle]
-  convention = "pep257"
+  convention = "numpy"
