@@ -4,6 +4,13 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build API ReStructuredText Files",
+            "detail": "Call Sphinx to build the autodoc API.",
+            "type": "shell",
+            "command": "sphinx-apidoc -M -f -e -o docs/source/api src",
+            "group": "build"
+        },
+        {
             "label": "Build Documentation",
             "detail": "Call Sphinx to build the HTML documentation.",
             "type": "shell",
