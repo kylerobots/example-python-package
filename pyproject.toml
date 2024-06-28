@@ -18,9 +18,10 @@
   version     = "0.1.0"
 
 [tool.poetry.dependencies]
-  argparse = "^1.4.0"
-  numpy    = "^1.26.4"
-  python   = "^3.10"
+  argparse         = "^1.4.0"
+  numpy            = "^1.26.4"
+  python           = "^3.10"
+  sphinx-rtd-theme = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
   nox        = "^2024.4.15"

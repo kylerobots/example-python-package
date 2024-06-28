@@ -8,9 +8,14 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
+        "docstrings",
+        "intersphinx",
         "Jolowicz's",
         "pyenv",
-        "pyproject"
+        "pyproject",
+        "toctree",
+        "typehints",
+        "viewcode"
     ],
     "python.testing.pytestArgs": [
         "tests"
