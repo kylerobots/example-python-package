@@ -1,12 +1,7 @@
-Example Python Package
-======================
+.. include:: ../../README.rst
 
 .. toctree::
    :hidden:
 
    license
    api/modules
-
-.. note::
-
-   The README will eventually go here.

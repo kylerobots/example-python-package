@@ -33,6 +33,11 @@
   sphinx           = "^7.3.7"
   sphinx-rtd-theme = "^2.0.0"
 
+
+[tool.poetry.group.docs.dependencies]
+esbonio = "^0.16.4"
+rstcheck = "^6.2.1"
+
 [tool.poetry.scripts]
   example-python-package = "example_python_package.example:main"
 
