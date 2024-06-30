@@ -8,9 +8,11 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
+        "backlinks",
         "docstrings",
         "intersphinx",
         "Jolowicz's",
+        "noxfile",
         "pyenv",
         "pyproject",
         "toctree",
