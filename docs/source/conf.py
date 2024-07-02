@@ -6,13 +6,15 @@
 # import sys
 # sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
+from example_python_package import __version__ as package_version
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'example-python-package'
 copyright = '2024, Kyle M. Hart'
 author = 'Kyle M. Hart'
-release = '0.1.0'
+release = package_version
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
