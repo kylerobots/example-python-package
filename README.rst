@@ -14,16 +14,13 @@ with a number of features.
 The Package Itself
 ------------------
 
-This package provides a single module, :py:mod:`simple_math<example_python_package.simple_math>`, with 4 functions:
-:py:func:`add <example_python_package.simple_math.add>`,
-:py:func:`subtract<example_python_package.simple_math.subtract>`,
-:py:func:`multiply<example_python_package.simple_math.multiply>`, and
-:py:func:`divide<example_python_package.simple_math.divide>`. Each of these functions takes two arguments and returns
+This package provides a single module, ``example_python_package.simple_math``, with 4 functions: ``add``, ``subtract``,
+``multiply``, and ``divide``. Each of these functions takes two arguments and returns
 the result of the operation.
 
-There is also a script that runs :py:func:`example_python_package.example.main` that takes two numbers from the command
-line, calls all 4 function in turn, and prints the results to the console. This is included to demonstrate the use of
-the library.
+There is also a script, ``example_python_package.example.example.py`` that takes two numbers from the command line,
+calls all 4 function in turn, and prints the results to the console. This is included to demonstrate the use of the
+library.
 
 Included features
 -----------------
