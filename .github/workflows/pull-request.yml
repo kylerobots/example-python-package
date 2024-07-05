@@ -1,13 +1,21 @@
-# Various checks that must pass prior to merging a Pull Request.
-name: Pull Request Checks
+# Various jobs that run on a Pull Request.
+name: Pull Request
 on:
   pull_request:
     branches:
       - main
 jobs:
-  # Run unit and end-to-end tests on a variety of different OS and Python versions.
+  # Check that the commit history follows Conventional Commit format.
+  conventional-commit:
+    name: Conventional Commit Enforcement
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conventional Commit Lint
+        uses: opensource-nepal/commitlint@v1.0.0
+  # Run unit and end-to-end tests on a variety of different OS and Python
+  # versions.
   multi-version-tests:
-    name: Run Tests on Multiple Versions
+    name: Unit Tests on Multiple Versions
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -30,10 +38,11 @@ jobs:
         run: poetry run pytest
       - name: Run End-to-End Test
         run: poetry run example-python-package 1 2
-  # Run on a single version to extract test and coverage reports.
-  # This is a bit duplicative, since it runs above as well.
-  run-with-reports:
-    name: Run Tests and Report
+  # Run unit tests to capture code coverage reports. This is a bit redundant
+  # with the previous job, but it is run here to avoid the need to merge
+  # reports from each OS and Python version.
+  code-coverage:
+    name: Code Coverage
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -59,7 +68,7 @@ jobs:
           junitxml-path: ./results.xml
           junitxml-title: "Test Summary"
           pytest-xml-coverage-path: ./coverage.xml
-  # Perform a linting check.
+  # Run a linter to check for code style issues.
   linting:
     name: Linting Check
     runs-on: ubuntu-latest

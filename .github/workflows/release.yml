@@ -1,13 +1,14 @@
-# This workflow publishes the package to TestPyPi when a new release is created.
-name: Upload Python Package
+# Various jobs that run when a new version is released.
+name: New Release
 on:
   release:
     types: [published]
 permissions:
   contents: read
 jobs:
-  # Build the package, then publish it.
-  deploy:
+  # Deploy the package to TestPyPi.
+  publish-package:
+    name: Publish Package
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
