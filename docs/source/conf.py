@@ -22,6 +22,8 @@ release = package_version
 extensions = [
     # Automatically builds documentation from docstrings.
     "sphinx.ext.autodoc",
+    # Prevent GitHub Pages from doing its own build/render.
+    "sphinx.ext.githubpages",
     # Links to other package documentation.
     "sphinx.ext.intersphinx",
     # Converts NumPy-style docstrings to Sphinx.
