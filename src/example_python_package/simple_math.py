@@ -1,16 +1,20 @@
-"""This module contains simple math functions."""
+"""Simple math functions."""
 
 import numpy
 
 
 def add(a: float | int, b: float | int) -> float | int:
-    """Add two numbers.
+    """Add two numbers together.
 
-    Arguments:
-        a -- The first number to add.
-        b -- The second number to add.
+    Parameters
+    ----------
+    a
+        The first number.
+    b
+        The second number.
 
-    Returns:
+    Returns
+    -------
         a + b
     """
     # This is overly complex, but is done to incorporate a numpy dependency.
@@ -23,24 +27,32 @@ def add(a: float | int, b: float | int) -> float | int:
 def subtract(a: float | int, b: float | int) -> float | int:
     """Subtract two numbers.
 
-    Arguments:
-        a -- The first number to subtract.
-        b -- The second number to subtract.
+    Parameters
+    ----------
+    a
+        The first number.
+    b
+        The second number.
 
-    Returns:
+    Returns
+    -------
         a - b
     """
     return a - b
 
 
 def multiply(a: float | int, b: float | int) -> float | int:
-    """Multiple two numbers.
+    """Multiply two numbers.
 
-    Arguments:
-        a -- The first number to multiply.
-        b -- The second number to multiply.
+    Parameters
+    ----------
+    a
+        The first number.
+    b
+        The second number.
 
-    Returns:
+    Returns
+    -------
         a * b
     """
     return a * b
@@ -49,15 +61,21 @@ def multiply(a: float | int, b: float | int) -> float | int:
 def divide(a: float | int, b: float | int) -> float:
     """Divide two numbers.
 
-    Arguments:
-        a -- The numerator.
-        b -- The denominator.
+    Parameters
+    ----------
+    a
+        The numerator.
+    b
+        The denominator.
 
-    Raises:
-        ValueError: Raised if the denominator is zero.
-
-    Returns:
+    Returns
+    -------
         a / b
+
+    Raises
+    ------
+    ValueError
+        Raised if the denominator is zero.
     """
     if b == 0:
         msg = "Cannot divide by zero."

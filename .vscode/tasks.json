@@ -4,7 +4,37 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build API ReStructuredText Files",
+            "detail": "Call Sphinx to build the autodoc API.",
+            "type": "shell",
+            "command": "sphinx-apidoc -M -f -e -o docs/source/api src",
+            "group": "build"
+        },
+        {
+            "label": "Build Documentation",
+            "detail": "Call Sphinx to build the HTML documentation.",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "command": "poetry run make html",
+            "group": "build",
+            "dependsOn": [
+                "Delete Documentation"
+            ],
+        },
+        {
+            "label": "Delete Documentation",
+            "detail": "Delete previously built documentation.",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "command": "poetry run make clean",
+        },
+        {
             "label": "Unit Test Coverage",
+            "detail": "Run the unit tests and generate a coverage report.",
             "type": "shell",
             "command": "poetry run pytest --cov",
             "group": "test",

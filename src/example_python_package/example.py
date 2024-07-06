@@ -6,7 +6,7 @@ from . import simple_math
 
 
 def main() -> None:
-    """Run the script."""
+    """Run the example script."""
     parser = argparse.ArgumentParser(
         description="Demonstrate simple math operations.",
     )
