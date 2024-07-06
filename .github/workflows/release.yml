@@ -11,19 +11,59 @@ jobs:
     name: Publish Package
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4.1.7
-    # By default, this will look for the .python-version file to determine which to install.
-    - name: Set up Python
-      uses: actions/setup-python@v5.1.0
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install poetry
-    # Poetry does not normally know to look for TestPyPi
-    - name: Configure Test PyPi Access
-      run: poetry config repositories.testpypi https://test.pypi.org/legacy/
-    - name: Build Package
-      run: poetry build
-    - name: Publish Package
-      run: poetry publish --repository=testpypi --username=__token__ --password=${{ secrets.TEST_PYPI_TOKEN }}
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.7
+      # There is a way to read from .python-version, but it fails if multiple
+      # versions are listed. So specify manually.
+      - name: Setup Python
+        with:
+          python-version: '3.12'
+        uses: actions/setup-python@v5.1.0
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+      # Poetry does not normally know to look for TestPyPi
+      - name: Configure Test PyPi Access
+        run: poetry config repositories.testpypi https://test.pypi.org/legacy/
+      - name: Build Package
+        run: poetry build
+      - name: Publish Package
+        run: poetry publish --repository=testpypi --username=__token__ --password=${{ secrets.TEST_PYPI_TOKEN }}
+  # Publish the documentation to GitHub Pages.
+  publish-docs:
+    name: Publish Documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # This prevents multiple from running at once. This shouldn't be necessary
+    # unless there are lots of releases at once, but it is here just in case.
+    concurrency:
+      group: documentation
+      cancel-in-progress: false
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.7
+      - name: Setup Python
+        with:
+          python-version: '3.12'
+        uses: actions/setup-python@v5.1.0
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --with=docs
+      # This configures GitHub Pages.
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build Docs
+        working-directory: docs
+        run: poetry run make html
+      - name: Upload Documentation
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: docs/build/html/
+      - name: Deploy Documentation
+        uses: actions/deploy-pages@v4.0.5
