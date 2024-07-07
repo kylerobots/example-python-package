@@ -36,7 +36,7 @@ jobs:
         run: poetry publish --repository=testpypi --username=__token__ --password=${{ secrets.TEST_PYPI_TOKEN }}
       # Also upload to the GitHub release.
       - name: Upload to Release
-        uses: sekwah41/upload-release-assets@v1.1.1
+        uses: sekwah41/upload-release-assets@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
