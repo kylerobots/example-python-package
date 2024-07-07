@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.7
+        with:
+          ref: ${{ github.even.release.tag_name }}
       # There is a way to read from .python-version, but it fails if multiple
       # versions are listed. So specify manually.
       - name: Setup Python
@@ -23,13 +25,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install poetry
+          poetry install --only main
       # Poetry does not normally know to look for TestPyPi
       - name: Configure Test PyPi Access
         run: poetry config repositories.testpypi https://test.pypi.org/legacy/
       - name: Build Package
         run: poetry build
+      # Publish to TestPyPi
       - name: Publish Package
         run: poetry publish --repository=testpypi --username=__token__ --password=${{ secrets.TEST_PYPI_TOKEN }}
+      # Also upload to the GitHub release.
+      - name: Upload to Release
+        uses: sekwah41/upload-release-assets@v1.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: dist/*
   # Publish the documentation to GitHub Pages.
   publish-docs:
     name: Publish Documentation
