@@ -32,8 +32,9 @@ for implementation details.
 Code Coverage
 ^^^^^^^^^^^^^
 
-There is a VS Code task to run and report the code coverage of the unit tests. There is also a GitHub workflow that does
-the same and comments the results on the Pull Request. This uses `Coverage <https://coverage.readthedocs.io>`_.
+There is a VS Code task to run and report the code coverage of the unit tests. There is also a job in the
+*.github/workflows/pull-request.yml* GitHub workflow that does the same and comments the results on the Pull Request.
+This uses `Coverage <https://coverage.readthedocs.io>`_.
 
 Conventional Commit Checks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -46,9 +47,9 @@ run ``pre-commit install --hook-type commit-msg``.
 .. warning:: This check is not enforced for all developers. Each contributor would need to run this locally to ensure it
     applies.
 
-Additionally, there is an Action in the *.github/workflows/conventional-commit.yml* file that checks all Git commits in
-a Pull Request and fails if they do not all follow the convention. This would ensure any developers contributing to the
-project adhere to this standard.
+Additionally, there is an job in the *.github/workflows/pull-request.yml* file that checks all Git commits in a Pull
+Request and fails if they do not all follow the convention. This would ensure any developers contributing to the project
+adhere to this standard.
 
 Documentation
 ^^^^^^^^^^^^^
@@ -75,10 +76,12 @@ Ruff also provides formatting, so it is configured to format the code on save.
 Package Publishing
 ^^^^^^^^^^^^^^^^^^
 
-There is a workflow file called *python-publish.yml* that will automatically build and push to
+There is a workflow file called *.github/workflows/release.yml* that will automatically build and push to
 `TestPyPi <https://test.pypi.org/>`_ when a new Release is released. It uses Poetry for the build and push. It publishes
 to TestPyPi because this isn't a real package that does anything useful, so it is published somewhere that won't
 pollute. The process for publishing to PyPi is the same though.
+
+This same workflow will also upload the built files to the Release itself for manual download and installation.
 
 Poetry
 ^^^^^^
@@ -97,7 +100,7 @@ versions. This will allow you to have multiple different Python versions at once
 Release Drafts
 ^^^^^^^^^^^^^^
 
-There is a GitHub workflow that automatically drafts release notes based on Pull Requests. It uses an Action called
+There is a GitHub workflow job that automatically drafts release notes based on Pull Requests. It uses an Action called
 `release-drafter <https://github.com/release-drafter/release-drafter>`_. This action is configured to group info based
 on the tag type (e.g. *build*, *documentation*, etc.) and can automatically determine the next version using the same
 tags.
